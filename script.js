@@ -456,7 +456,7 @@ function showUpgradeResult() {
         `<div class="profit-info">Прибыль: <span class="profit-value">+${selectedSiteSkin.price - selectedInventoryItem.price} ₽</span></div>` : '';
     
     resultDiv.innerHTML = `
-        <h3 class="${rarityClass}-text">${upgradeResult ? 'УСПЕХ!' : 'НЕУДАЧА'}</h3>
+        <h3 class="${rarityClass}-text">${upgradeResult ? 'УСПЕХ!' : 'НЕ БЕДА'}</h3>
         ${upgradeResult ? 
             `<img src="${escapeHTML(selectedSiteSkin.image)}" alt="${escapeHTML(selectedSiteSkin.name)}" class="result-image ${rarityClass}">
              <p>Вы получили: ${escapeHTML(selectedSiteSkin.name)}</p>
@@ -569,13 +569,59 @@ function openCase(caseItem) {
         return;
     }
 
-    // Списываем деньги сразу
-    currentUser.balance -= caseItem.price;
-    updateUserInDatabase(currentUser);
-    updateBalance();
-
+    // Сохраняем выбранный кейс
     selectedCase = caseItem;
     
+    // Показываем модальное окно подтверждения
+    const confirmModal = document.createElement('div');
+    confirmModal.className = 'modal';
+    confirmModal.id = 'confirmCaseModal';
+    confirmModal.style.display = 'block';
+    confirmModal.innerHTML = `
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Открыть кейс</h2>
+            <p>Вы собираетесь открыть кейс "${escapeHTML(caseItem.name)}" за ${caseItem.price} ₽</p>
+            <p>Ваш баланс: ${currentUser.balance} ₽</p>
+            <p>После открытия останется: ${currentUser.balance - caseItem.price} ₽</p>
+            <div class="confirm-buttons">
+                <button id="confirmOpenBtn" class="open-case-btn">Открыть кейс</button>
+                <button id="cancelOpenBtn" class="cancel-btn">Отмена</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(confirmModal);
+    
+    // Функция для закрытия модального окна подтверждения
+    const closeConfirmModal = () => {
+        document.body.removeChild(confirmModal);
+    };
+    
+    // Добавляем обработчики для кнопок
+    document.getElementById('confirmOpenBtn').addEventListener('click', () => {
+        // Списываем деньги ТОЛЬКО после подтверждения
+        currentUser.balance -= caseItem.price;
+        updateUserInDatabase(currentUser);
+        updateBalance();
+        closeConfirmModal();
+        
+        // Продолжаем процесс открытия кейса
+        openConfirmedCase();
+    });
+    
+    document.getElementById('cancelOpenBtn').addEventListener('click', closeConfirmModal);
+    confirmModal.querySelector('.close').addEventListener('click', closeConfirmModal);
+    
+    // Закрытие по клику вне модального окна
+    window.addEventListener('click', function(event) {
+        if (event.target === confirmModal) {
+            closeConfirmModal();
+        }
+    });
+}
+
+// Функция для продолжения процесса открытия кейса после подтверждения
+function openConfirmedCase() {
     // Создаём массив предметов с вероятностями в зависимости от редкости
     const allSkins = getSkinsData();
     const possibleRewards = [];
