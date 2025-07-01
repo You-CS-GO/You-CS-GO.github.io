@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CS:GO кейсы и скины - открывайте кейсы и получайте редкие скины">
+    <meta name="keywords" content="CS:GO, кейсы, скины, апгрейд скинов, открытие кейсов">
+    <title>You - CS:GO</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <base href="">
+</head>
+<body>
+    <div class="gradient-bg">
+        <header>
+            <div class="balance">Баланс: <span id="balance">0</span> ₽</div>
+            <label class="animation-toggle-container">
+                <input type="checkbox" id="animationToggle" class="animation-toggle" checked>
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-text">Анимация</span>
+            </label>
+            <div class="auth-buttons">
+                <button id="loginBtn" class="auth-btn">Вход</button>
+                <button id="registerBtn" class="auth-btn">Регистрация</button>
+                <button id="adminBtn" class="admin-btn" style="display: none;">Админ-панель</button>
+                <button id="upgradeBtn" class="upgrade-btn-header" style="display: none;">Апгрейд</button>
+                <button id="syncBtn" class="sync-btn" style="display: none;">Синхронизация</button>
+                <button id="profileBtn" class="auth-btn" style="display: none;">Профиль</button>
+                <button id="logoutBtn" class="logout-btn" style="display: none;">Выход</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="cases-section">
+                <h2>Доступные кейсы</h2>
+                <div class="cases-grid" id="casesContainer">
+                    <!-- Кейсы будут загружены через JS -->
+                </div>
+            </section>
+
+            <section class="bonus-section" id="bonusSection" style="display: none;">
+                <h2>Бонус 500 ₽</h2>
+                <div class="timer" id="bonusTimer">30:00</div>
+                <button id="claimBonusBtn" disabled>Забрать бонус</button>
+            </section>
+        </main>
+
+        <!-- Модальные окна -->
+        <div class="modal" id="authModal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle">Регистрация</h2>
+                <form id="authForm">
+                    <input type="text" id="username" placeholder="Логин" required>
+                    <input type="email" id="email" placeholder="Почта" required>
+                    <input type="password" id="password" placeholder="Пароль" required>
+                    <button type="submit" id="submitAuthBtn">Зарегистрироваться</button>
+                </form>
+                <p id="switchAuthMode">Уже есть аккаунт? Войти</p>
+            </div>
+        </div>
+
+        <div class="modal" id="caseModal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Открытие кейса</h2>
+                <div class="case-reward" id="caseReward">
+                    <!-- Выпавший предмет будет здесь -->
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="profileModal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Ваш профиль</h2>
+                <div class="user-info">
+                    <p>Логин: <span id="profileUsername"></span></p>
+                    <p>Баланс: <span id="profileBalance"></span> ₽</p>
+                </div>
+                
+                <div class="profile-tabs">
+                    <button class="profile-tab active" data-tab="inventory">Инвентарь</button>
+                    <button class="profile-tab" data-tab="history">История апгрейдов</button>
+                </div>
+                
+                <div class="tab-content active" id="inventoryTab">
+                    <h3>Ваш инвентарь</h3>
+                    <div class="inventory-grid" id="inventoryContainer">
+                        <!-- Предметы инвентаря будут здесь -->
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="historyTab" style="display: none;">
+                    <h3>История апгрейдов</h3>
+                    <div class="upgrade-history-container" id="upgradeHistoryContainer">
+                        <div class="empty-history">История апгрейдов пуста</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно для апгрейда -->
+        <div class="modal upgrade-modal" id="upgradeModal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 class="upgrade-title">Апгрейд скина</h2>
+                <div class="upgrade-container">
+                    <div class="inventory-side">
+                        <h3>Ваши скины</h3>
+                        <div class="skins-grid" id="upgradeInventory"></div>
+                        <div class="pagination" id="inventoryPagination"></div>
+                    </div>
+                    
+                    <div class="upgrade-main">
+                        <div class="upgrade-circle" id="upgradeCircle">
+                            <div class="upgrade-progress" id="upgradeProgress"></div>
+                            <div class="upgrade-center">
+                                <div class="chance-value" id="chanceValue">0%</div>
+                                <div class="chance-label">Шанс успеха</div>
+                            </div>
+                            <div class="upgrade-pointer" id="upgradePointer"></div>
+                        </div>
+                        <button id="startUpgradeBtn" class="upgrade-btn" disabled>Улучшить</button>
+                    </div>
+                    
+                    <div class="site-side">
+                        <h3>Доступные скины</h3>
+                        <div class="skins-grid" id="siteSkins"></div>
+                        <div class="pagination" id="sitePagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

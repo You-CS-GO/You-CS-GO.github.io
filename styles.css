@@ -1,0 +1,1441 @@
+/* Основные стили */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    height: 100%;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+/* Кнопки */
+/* Обновленные стили кнопок */
+.auth-btn, .admin-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #4a00e0, #8e2de2);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(74, 0, 224, 0.3);
+    margin: 0 5px;
+}
+
+.admin-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+}
+
+.sync-btn {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(74, 0, 224, 0.4);
+    background: linear-gradient(135deg, #5a10f0, #9e3df6);
+}
+
+.admin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(231, 76, 60, 0.4);
+    background: linear-gradient(135deg, #ff5c4c, #d04939);
+}
+
+.sync-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+    background: linear-gradient(135deg, #3eacf7, #3498db);
+}
+
+.upgrade-btn-header {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(243, 156, 18, 0.3);
+    margin: 0 5px;
+}
+
+.upgrade-btn-header:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(243, 156, 18, 0.4);
+    background: linear-gradient(135deg, #ffac2c, #f68e3c);
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+    margin: 0 5px;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(231, 76, 60, 0.4);
+    background: linear-gradient(135deg, #f75c4c, #d04939);
+}
+
+/* Модальные окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+}
+
+.close:hover {
+    color: #f39c12;
+}
+
+/* Анимация открытия кейса */
+.case-opening-animation {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    margin: 20px 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.items-track {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    transition: transform 0.1s linear;
+}
+
+.item-slide {
+    width: 150px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    flex-shrink: 0;
+}
+
+.item-slide img {
+    max-height: 120px;
+    width: auto;
+    object-fit: contain;
+}
+
+.pointer {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background-color: #f39c12;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.pointer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid #f39c12;
+}
+
+.open-case-btn {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #4a00e0, #8e2de2);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px auto;
+    display: block;
+    transition: all 0.3s;
+}
+
+.open-case-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(74, 0, 224, 0.4);
+}
+
+.open-case-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Результат открытия кейса */
+.case-result {
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reward-image {
+    max-height: 200px;
+    width: auto;
+    margin: 15px 0;
+    animation: pulse 0.5s ease-in-out 3;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.case-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.sell-btn, .keep-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    font-size: 16px;
+    min-width: 120px;
+    color: white;
+}
+
+.sell-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.keep-btn {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.sell-btn:hover, .keep-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Инвентарь */
+.inventory-container {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.inventory-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.inventory-item {
+    width: 150px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.inventory-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Стили для различных редкостей */
+.inventory-item.common {
+    background: linear-gradient(145deg, rgba(0,0,0,0.4), rgba(100,100,100,0.2));
+}
+
+.inventory-item.uncommon {
+    background: linear-gradient(145deg, rgba(0,0,0,0.4), rgba(41,128,185,0.2));
+}
+
+.inventory-item.rare {
+    background: linear-gradient(145deg, rgba(0,0,0,0.4), rgba(74,0,224,0.2));
+}
+
+.inventory-item.epic {
+    background: linear-gradient(145deg, rgba(0,0,0,0.4), rgba(155,89,182,0.2));
+}
+
+.inventory-item.legendary {
+    background: linear-gradient(145deg, rgba(0,0,0,0.4), rgba(241,196,15,0.2));
+}
+
+.inventory-item.secret {
+    background: linear-gradient(145deg, rgba(0,0,0,0.4), rgba(231,76,60,0.2));
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(231,76,60,0.5);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(231,76,60,0.8);
+    }
+}
+
+.item-rarity {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 10px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-weight: bold;
+}
+
+.empty-inventory {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.inventory-item img {
+    width: 80%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.inventory-item .sell-btn {
+    width: 100%;
+    padding: 8px 12px;
+    margin-top: 8px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.inventory-item .sell-btn:hover {
+    background: linear-gradient(135deg, #ff5c4c, #d04939);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.4);
+}
+
+.inventory-item .sell-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.inventory-item .sell-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    transition: 0.5s;
+}
+
+.inventory-item .sell-btn:hover::after {
+    left: 100%;
+}
+
+/* Стили для кнопок пагинации инвентаря */
+.inventory-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.inventory-pagination button {
+    padding: 8px 15px;
+    min-width: 40px;
+    background: linear-gradient(135deg, #4a00e0, #8e2de2);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.inventory-pagination button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #5a10f0, #9e3df6);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(74, 0, 224, 0.4);
+}
+
+.inventory-pagination button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Стили для кнопок в профиле */
+.profile-modal .inventory-item .sell-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.profile-modal .inventory-item .sell-btn:hover {
+    background: linear-gradient(135deg, #ff5c4c, #d04939);
+}
+
+/* Анимация при нажатии */
+@keyframes buttonClick {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(1px) scale(0.98); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+.inventory-item .sell-btn:active,
+.inventory-pagination button:active {
+    animation: buttonClick 0.2s ease;
+}
+
+/* Форма авторизации */
+#authForm input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#authForm button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4a00e0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#switchAuthMode {
+    text-align: center;
+    cursor: pointer;
+    color: #8e2de2;
+    margin-top: 15px;
+}
+
+/* Анимация падения предмета */
+@keyframes dropIn {
+    0% { transform: translateY(-100px) rotate(-15deg); opacity: 0; }
+    80% { transform: translateY(10px) rotate(5deg); opacity: 1; }
+    100% { transform: translateY(0) rotate(0); opacity: 1; }
+}
+
+.final-reward {
+    animation: dropIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Стили для контейнера кейсов */
+.cases-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding: 25px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Стили для каждого кейса */
+.case-item {
+  background: linear-gradient(145deg, rgba(0,0,0,0.5), rgba(74,0,224,0.2));
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 200px; /* Ширина кейса */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Добавляем эффект блеска при наведении */
+.case-item::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  transition: transform 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.case-item:hover::after {
+  opacity: 1;
+  animation: shineEffect 1.5s forwards;
+}
+
+@keyframes shineEffect {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
+}
+
+/* Эффект при наведении */
+.case-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(74, 0, 224, 0.5);
+  background: linear-gradient(145deg, rgba(0,0,0,0.6), rgba(74,0,224,0.3));
+}
+
+/* Изображение кейса */
+.case-item img {
+  width: 140px; /* Размер изображения */
+  height: 140px;
+  object-fit: contain;
+  margin: 0 auto 15px;
+  display: block;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.1);
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Название кейса */
+.case-item h3 {
+  margin: 15px 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Цена кейса */
+.case-price {
+  margin-top: 12px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #f39c12;
+  background: rgba(0,0,0,0.4);
+  padding: 8px 15px;
+  border-radius: 25px;
+  display: inline-block;
+  border: 1px solid rgba(243, 156, 18, 0.3);
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+  .cases-grid {
+    gap: 20px;
+    padding: 20px 15px;
+  }
+  
+  .case-item {
+    width: 160px;
+    padding: 15px;
+  }
+  
+  .case-item img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .case-item h3 {
+    font-size: 16px;
+  }
+  
+  .case-price {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+}
+
+.animation-toggle-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+/* Скрываем стандартный чекбокс */
+.animation-toggle {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Стили для кастомного переключателя */
+.toggle-slider {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(145deg, #3a3a3a, #2b2b2b);
+  border-radius: 30px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+}
+
+/* Круглый бегунок */
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(145deg, #f5f5f5, #e0e0e0);
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+/* Стили для активного состояния */
+.animation-toggle:checked + .toggle-slider {
+  background: linear-gradient(145deg, #4a00e0, #8e2de2);
+}
+
+.animation-toggle:checked + .toggle-slider::before {
+  transform: translateX(30px);
+  background: linear-gradient(145deg, #ffffff, #e0e0e0);
+}
+
+/* Текст переключателя */
+.toggle-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  order: -1; /* Помещаем текст перед переключателем */
+}
+
+/* Эффекты при наведении */
+.animation-toggle-container:hover .toggle-slider {
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5), 0 0 10px rgba(74, 0, 224, 0.5);
+}
+
+/* Анимация переключения */
+@keyframes toggleBounce {
+  0%, 100% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(5px) scale(1.1); }
+}
+
+.animation-toggle:checked + .toggle-slider::before {
+  animation: toggleBounce 0.4s ease;
+}
+
+/* Стили для апгрейда */
+#upgradeBtn {
+    background: linear-gradient(145deg, #f39c12, #e67e22);
+    box-shadow: 0 4px 8px rgba(243, 156, 18, 0.3);
+}
+
+#upgradeBtn:hover {
+    background: linear-gradient(145deg, #f8b133, #f1932c);
+    box-shadow: 0 6px 12px rgba(243, 156, 18, 0.4);
+}
+
+#logoutBtn {
+    background: linear-gradient(145deg, #e74c3c, #c0392b);
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+}
+
+#logoutBtn:hover {
+    background: linear-gradient(145deg, #ec7063, #d35400);
+}
+
+/* Полностью переработанные стили для апгрейда */
+.upgrade-modal .modal-content {
+    max-width: 1200px;
+    width: 90%;
+    padding: 30px;
+    background: rgba(20, 20, 40, 0.95);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+}
+
+.upgrade-container {
+    display: grid;
+    grid-template-columns: 1fr 400px 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.inventory-side, .site-side {
+    background: rgba(10, 10, 30, 0.7);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    height: 600px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(74, 0, 224, 0.5) rgba(10, 10, 30, 0.5);
+}
+
+/* Стилизация скроллбара для Chrome/Safari/Edge */
+.inventory-side::-webkit-scrollbar,
+.site-side::-webkit-scrollbar {
+    width: 8px;
+}
+
+.inventory-side::-webkit-scrollbar-track,
+.site-side::-webkit-scrollbar-track {
+    background: rgba(10, 10, 30, 0.5);
+    border-radius: 10px;
+}
+
+.inventory-side::-webkit-scrollbar-thumb,
+.site-side::-webkit-scrollbar-thumb {
+    background: rgba(74, 0, 224, 0.5);
+    border-radius: 10px;
+}
+
+.inventory-side::-webkit-scrollbar-thumb:hover,
+.site-side::-webkit-scrollbar-thumb:hover {
+    background: rgba(74, 0, 224, 0.8);
+}
+
+.inventory-side h3, .site-side h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #f39c12;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.inventory-side h3::after, .site-side h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #f39c12, transparent);
+}
+
+.skins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.skin-item {
+    background: rgba(30, 30, 60, 0.6);
+    border-radius: 8px;
+    padding: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    text-align: center;
+}
+
+.skin-item:hover {
+    transform: translateY(-5px);
+    background: rgba(74, 0, 224, 0.3);
+    box-shadow: 0 8px 15px rgba(74, 0, 224, 0.3);
+}
+
+.skin-item.selected {
+    background: linear-gradient(135deg, rgba(74, 0, 224, 0.7), rgba(142, 45, 226, 0.7));
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 25px rgba(74, 0, 224, 0.6);
+    transform: scale(1.05);
+}
+
+.skin-item img {
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.skin-item.selected img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.skin-info {
+    font-size: 0.9rem;
+    color: white;
+}
+
+.skin-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.skin-price {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.upgrade-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.upgrade-circle {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: rgba(10, 10, 30, 0.8);
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 0 40px rgba(0, 0, 0, 0.8),
+        inset 0 0 25px rgba(0, 0, 0, 0.6);
+    margin-bottom: 30px;
+}
+
+.upgrade-progress {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    clip: rect(0, 350px, 350px, 175px);
+    background: conic-gradient(
+        #2ecc71 0%,
+        #f39c12 50%,
+        #e74c3c 100%
+    );
+    transform: rotate(0deg);
+    transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.upgrade-center {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: linear-gradient(145deg, #1a1a2e, #16213e);
+    border-radius: 50%;
+    top: 35px;
+    left: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 5px 25px rgba(0, 0, 0, 0.7);
+}
+
+.chance-value {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f39c12, #e74c3c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    transition: all 0.5s;
+}
+
+.chance-label {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.upgrade-pointer {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: white;
+    border-radius: 50%;
+    top: -17px;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    transform-origin: 50% calc(175px + 17px); /* половина высоты круга + половина высоты указателя */
+    z-index: 10;
+    opacity: 0;
+    box-shadow: 
+        0 0 25px rgba(255, 255, 255, 0.9),
+        0 0 40px rgba(255, 255, 255, 0.6);
+    transition: opacity 0.5s ease;
+    will-change: transform;
+}
+.upgrade-btn {
+    padding: 15px 40px;
+    background: linear-gradient(145deg, #f39c12, #e67e22);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(243, 156, 18, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.upgrade-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.upgrade-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(243, 156, 18, 0.7);
+    background: linear-gradient(145deg, #ffb347, #ff8c00);
+}
+
+.upgrade-btn:hover::before {
+    left: 100%;
+}
+
+.upgrade-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.upgrade-result {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 30, 0.9);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+    z-index: 20;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.upgrade-result.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.upgrade-result h3 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.upgrade-result.success h3 {
+    color: #2ecc71;
+    text-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+}
+
+.upgrade-result.fail h3 {
+    color: #e74c3c;
+    text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+}
+
+/* Стили для текста разной редкости */
+.common-text { color: #B0C3D9; }
+.uncommon-text { color: #5E98D9; }
+.rare-text { color: #4B69FF; }
+.epic-text { color: #8847FF; }
+.legendary-text { color: #D32CE6; }
+.secret-text { color: #EB4B4B; text-shadow: 0 0 5px rgba(235, 75, 75, 0.7); }
+
+.profit-info {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.profit-value {
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+.chance-info {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #7f8c8d;
+}
+
+.upgrade-result img {
+    width: 120px;
+    height: auto;
+    margin: 15px 0;
+    animation: pulse 0.5s ease-in-out 3;
+}
+
+.upgrade-result button {
+    padding: 12px 30px;
+    background: #4a00e0;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: all 0.3s;
+}
+
+.upgrade-result button:hover {
+    background: #8e2de2;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(142, 45, 226, 0.4);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .upgrade-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+    
+    .upgrade-main {
+        order: -1;
+        margin-bottom: 30px;
+    }
+    
+    .inventory-side, .site-side {
+        height: auto;
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .upgrade-circle {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .upgrade-center {
+        width: 220px;
+        height: 220px;
+        top: 30px;
+        left: 30px;
+    }
+    
+    .skins-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    
+    .chance-value {
+        font-size: 2.8rem;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pointerSpin {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(1440deg); }
+}
+
+/* Улучшение стилей для мобильных устройств */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .auth-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .auth-btn, .upgrade-btn-header, .logout-btn {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+        margin: 10% auto;
+    }
+    
+    .inventory-item {
+        width: 130px;
+    }
+    
+    .upgrade-modal .modal-content {
+        padding: 15px;
+    }
+}
+
+/* Стили для страниц */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.page-btn {
+    padding: 8px 15px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.page-btn:hover:not(.active) {
+    background: rgba(74,0,224,0.3);
+}
+
+.page-btn.active {
+    background: linear-gradient(135deg, #4a00e0, #8e2de2);
+    font-weight: bold;
+}
+
+/* Стили для бонусной секции */
+.bonus-section {
+    background: linear-gradient(145deg, rgba(0,0,0,0.5), rgba(74,0,224,0.2));
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    margin: 30px auto;
+    max-width: 400px;
+}
+
+.bonus-section h2 {
+    color: #f39c12;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+}
+
+.timer {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+#claimBonusBtn {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px auto;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(243, 156, 18, 0.3);
+}
+
+#claimBonusBtn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(243, 156, 18, 0.5);
+    background: linear-gradient(135deg, #ffb347, #ff8c00);
+}
+
+#claimBonusBtn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+/* Стили для вкладок профиля */
+.profile-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.profile-tab {
+    background: none;
+    border: none;
+    color: #888;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.profile-tab:hover {
+    color: #fff;
+}
+
+.profile-tab.active {
+    color: #fff;
+}
+
+.profile-tab.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -11px;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #8e2de2, #4a00e0);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* Стили для истории апгрейдов */
+.upgrade-history-container {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.upgrade-history-item {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.upgrade-history-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.upgrade-history-item.success {
+    border-left: 3px solid #2ecc71;
+}
+
+.upgrade-history-item.fail {
+    border-left: 3px solid #e74c3c;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.history-date {
+    font-size: 12px;
+    color: #7f8c8d;
+}
+
+.history-result {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.history-result.success {
+    color: #2ecc71;
+}
+
+.history-result.fail {
+    color: #e74c3c;
+}
+
+.history-skins {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.history-skin {
+    text-align: center;
+}
+
+.history-skin img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.history-skin-name {
+    font-size: 12px;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.history-skin-price {
+    font-size: 11px;
+    color: #999;
+}
+
+.history-arrow {
+    color: #7f8c8d;
+    font-size: 20px;
+}
+
+.history-profit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.history-profit.positive {
+    color: #2ecc71;
+}
+
+.history-profit.negative {
+    color: #e74c3c;
+}
+
+.empty-history {
+    text-align: center;
+    padding: 30px 0;
+    color: #7f8c8d;
+    font-style: italic;
+}
