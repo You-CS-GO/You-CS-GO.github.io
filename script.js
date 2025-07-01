@@ -74,9 +74,12 @@ function showUpgradeModal() {
         return;
     }
     
+    upgradeModal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Запрещаем прокрутку фона
+    currentInventoryPage = 1;
+    currentSitePage = 1;
     renderUpgradeInventory();
     renderSiteSkins();
-    upgradeModal.style.display = 'block';
     resetUpgradeUI();
 }
 
@@ -93,6 +96,11 @@ function resetUpgradeUI() {
     // Удаляем предыдущий результат
     const result = document.querySelector('.upgrade-result');
     if (result) result.remove();
+
+    // Сбрасываем выделение всех предметов
+    document.querySelectorAll('.skin-item').forEach(item => {
+        item.classList.remove('selected');
+    });
 }
 
 function renderUpgradeInventory() {
@@ -189,26 +197,26 @@ function getSkinsData() {
         { name: "AK-47 | Searing Rage", price: 150, image: "ak Searing Rage.png", rarity: "rare" },
         { name: "AWP | Printstream", price: 800, image: "awp printstream.png", rarity: "epic" },
         { name: "Desert Eagle | Serpent Strike", price: 20000, image: "desertegle Serpent Strike.png", rarity: "legendary" },
-        { name: "Glock-18 | Shinobu", price: 50, image: "glock Shinobu.png", rarity: "common" },
-        { name: "UMP-45 | K.O. Factory", price: 200, image: "ump K.O. Factory.png", rarity: "rare" },
-        { name: "Famas | Bad Trip", price: 450, image: "famas bad trip.png", rarity: "rare" },
-        { name: "Galil | Control", price: 350, image: "galil Control.png", rarity: "rare" },
+    { name: "Glock-18 | Shinobu", price: 50, image: "glock Shinobu.png", rarity: "common" },
+    { name: "UMP-45 | K.O. Factory", price: 200, image: "ump K.O. Factory.png", rarity: "rare" },
+    { name: "Famas | Bad Trip", price: 450, image: "famas bad trip.png", rarity: "rare" },
+    { name: "Galil | Control", price: 350, image: "galil Control.png", rarity: "rare" },
         { name: "AK-47 | Leet Museo", price: 2500, image: "ak Leet Museo.png", rarity: "legendary" },
         { name: "M4A4 | Ликорис лучистый", price: 200, image: "M4A4 Ликорис лучистый.png", rarity: "epic" },
-        { name: "USP-S | Чёрный лотос", price: 45, image: "USP-S Чёрный лотос.png", rarity: "common" },
-        { name: "Dual Berettas | Протектор", price: 50, image: "Dual Berettas Протектор.png", rarity: "common" },
-        { name: "G3SG1 | Наблюдение", price: 55, image: "G3SG1 Наблюдение.png", rarity: "uncommon" },
-        { name: "MAG-7 | Висмутовый спектр", price: 60, image: "MAG-7 Висмутовый спектр.png", rarity: "uncommon" },
-        { name: "M4A4 | Облом", price: 650, image: "M4A4 Облом.png", rarity: "rare" },
-        { name: "USP-S | Сайрекс", price: 55, image: "USP-S Сайрекс.png", rarity: "common" },
-        { name: "P2000 | Дерн", price: 15, image: "P2000 Дерн.png", rarity: "common" },
-        { name: "Sawed-Off | Принцесса пустошей", price: 200, image: "Sawed-Off Принцесса пустошей.png", rarity: "uncommon" },
-        { name: "M4A4 | Hellish", price: 1000, image: "M4A4 Hellish.png", rarity: "epic" },
-        { name: "Сикрет вей", price: 1000000, image: "сикретвей.jpg", rarity: "secret" },
-        { name: "M4A4 | Eye of Horus", price: 10000, image: "M4A4 Eye of Horus.png", rarity: "legendary" },
-        { name: "P250 | Цифровой архитектор", price: 550, image: "P250 Цифровой архитектор.png", rarity: "rare" },
-        { name: "UMP-45 | Механизм", price: 10, image: "UMP-45 Механизм.png", rarity: "common" }
-    ];
+    { name: "USP-S | Чёрный лотос", price: 45, image: "USP-S Чёрный лотос.png", rarity: "common" },
+    { name: "Dual Berettas | Протектор", price: 50, image: "Dual Berettas Протектор.png", rarity: "common" },
+    { name: "G3SG1 | Наблюдение", price: 55, image: "G3SG1 Наблюдение.png", rarity: "uncommon" },
+    { name: "MAG-7 | Висмутовый спектр", price: 60, image: "MAG-7 Висмутовый спектр.png", rarity: "uncommon" },
+    { name: "M4A4 | Облом", price: 650, image: "M4A4 Облом.png", rarity: "rare" },
+    { name: "USP-S | Сайрекс", price: 55, image: "USP-S Сайрекс.png", rarity: "common" },
+    { name: "P2000 | Дерн", price: 15, image: "P2000 Дерн.png", rarity: "common" },
+    { name: "Sawed-Off | Принцесса пустошей", price: 200, image: "Sawed-Off Принцесса пустошей.png", rarity: "uncommon" },
+    { name: "M4A4 | Hellish", price: 1000, image: "M4A4 Hellish.png", rarity: "epic" },
+    { name: "Сикрет вей", price: 1000000, image: "сикретвей.jpg", rarity: "secret" },
+    { name: "M4A4 | Eye of Horus", price: 10000, image: "M4A4 Eye of Horus.png", rarity: "legendary" },
+    { name: "P250 | Цифровой архитектор", price: 550, image: "P250 Цифровой архитектор.png", rarity: "rare" },
+    { name: "UMP-45 | Механизм", price: 10, image: "UMP-45 Механизм.png", rarity: "common" }
+];
 }
 
 function getUniqueSkins() {
@@ -336,28 +344,28 @@ function startUpgrade() {
     const previousInventory = [...currentUser.inventory];
     
     try {
-        // Удаляем скин из инвентаря
-        const itemIndex = currentUser.inventory.findIndex(
-            item => item.name === selectedInventoryItem.name && 
-                  item.price === selectedInventoryItem.price
-        );
-        if (itemIndex !== -1) {
-            currentUser.inventory.splice(itemIndex, 1);
+    // Удаляем скин из инвентаря
+    const itemIndex = currentUser.inventory.findIndex(
+        item => item.name === selectedInventoryItem.name && 
+               item.price === selectedInventoryItem.price
+    );
+    if (itemIndex !== -1) {
+        currentUser.inventory.splice(itemIndex, 1);
         } else {
             console.error("Ошибка: скин не найден в инвентаре");
             throw new Error("Скин не найден в инвентаре");
-        }
-        
-        // Если апгрейд успешный - добавляем новый скин
-        if (upgradeResult) {
+    }
+    
+    // Если апгрейд успешный - добавляем новый скин
+    if (upgradeResult) {
             currentUser.inventory.push({...selectedSiteSkin}); // Клонируем объект скина
-        }
-        
-        // Сохраняем изменения
-        updateUserInDatabase(currentUser);
-        
-        // Запускаем анимацию
-        animateUpgrade();
+    }
+    
+    // Сохраняем изменения
+    updateUserInDatabase(currentUser);
+    
+    // Запускаем анимацию
+    animateUpgrade();
     } catch (error) {
         console.error("Ошибка в процессе апгрейда:", error);
         // В случае ошибки восстанавливаем инвентарь
@@ -600,9 +608,9 @@ function openCase(caseItem) {
     // Добавляем обработчики для кнопок
     document.getElementById('confirmOpenBtn').addEventListener('click', () => {
         // Списываем деньги ТОЛЬКО после подтверждения
-        currentUser.balance -= caseItem.price;
-        updateUserInDatabase(currentUser);
-        updateBalance();
+    currentUser.balance -= caseItem.price;
+    updateUserInDatabase(currentUser);
+    updateBalance();
         closeConfirmModal();
         
         // Продолжаем процесс открытия кейса
@@ -1105,7 +1113,7 @@ function setupEventListeners() {
         }
         return hash.toString(16);
     }
-    
+
     // Обработчик формы авторизации
     authForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -1128,12 +1136,12 @@ function setupEventListeners() {
                         updateUserInDatabase(user);
                     }
                     
-                    currentUser = user;
-                    inventoryItems = user.inventory || [];
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    updateUIForAuth();
-                    authModal.style.display = 'none';
-                } else {
+                currentUser = user;
+                inventoryItems = user.inventory || [];
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                updateUIForAuth();
+                authModal.style.display = 'none';
+            } else {
                     alert('Неверный пароль');
                 }
             } else {
@@ -1172,6 +1180,16 @@ function setupEventListeners() {
     
     // Обработчик для бонуса
     claimBonusBtn.addEventListener('click', claimBonus);
+
+    // Добавляем обработчик для закрытия модального окна
+    document.querySelector('#upgradeModal .close').addEventListener('click', closeUpgradeModal);
+    
+    // Закрытие по клику вне модального окна
+    upgradeModal.addEventListener('click', (e) => {
+        if (e.target === upgradeModal) {
+            closeUpgradeModal();
+        }
+    });
 }
 
 function closeModal(modal) {
@@ -1592,5 +1610,12 @@ function syncUserData() {
     if (confirm('Хотите узнать, как обеспечить доступ к одному аккаунту с разных устройств?')) {
         alert('Для доступа к аккаунту с разных устройств требуется:\n\n1. Серверная часть (бэкенд)\n2. База данных для хранения пользователей\n3. Система аутентификации с токенами\n\nПри текущей реализации на GitHub Pages эти данные хранятся в localStorage вашего браузера и доступны только на этом устройстве.');
     }
+}
+
+// Добавляем функцию закрытия модального окна
+function closeUpgradeModal() {
+    upgradeModal.style.display = 'none';
+    document.body.style.overflow = ''; // Возвращаем прокрутку
+    resetUpgradeUI();
 }
 
