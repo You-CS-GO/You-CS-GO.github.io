@@ -1129,129 +1129,142 @@ header {
 
 @media (max-width: 768px) and (min-width: 481px) {
     .upgrade-circle {
-        width: 280px;
-        height: 280px;
+        width: 250px;
+        height: 250px;
     }
-    
     .upgrade-center {
-        width: 220px;
-        height: 220px;
-        top: 30px;
-        left: 30px;
+        width: 80px;
+        height: 80px;
+        font-size: 20px;
     }
-    
     .skins-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 10px;
     }
-    
     .chance-value {
-        font-size: 2.8rem;
+        font-size: 24px;
     }
-    
     .upgrade-modal .modal-content {
         width: 95%;
         max-width: none;
-        padding: 15px;
         margin: 5% auto;
-    }
-    
-    .upgrade-container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        gap: 15px;
-    }
-    
-    .upgrade-main {
-        order: -1;
-        margin-bottom: 15px;
-    }
-    
-    .inventory-side, .site-side {
-        height: 300px;
-        max-height: 300px;
         padding: 15px;
+    }
+    .upgrade-container {
+        flex-direction: column;
+        height: auto;
+        max-height: 80vh;
+    }
+    .upgrade-main {
+        margin: 10px 0;
+    }
+    .inventory-side, .site-side {
+        width: 100%;
+        max-height: 200px;
+        margin: 10px 0;
     }
 }
 
-/* Дополнительные стили для мобильных устройств */
 @media (max-width: 480px) {
     .upgrade-circle {
         width: 200px;
         height: 200px;
-        margin-bottom: 15px;
     }
-    
     .upgrade-center {
-        width: 150px;
-        height: 150px;
-        top: 25px;
-        left: 25px;
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
     }
-    
     .chance-value {
-        font-size: 2rem;
+        font-size: 20px;
     }
-    
     .chance-label {
-        font-size: 0.9rem;
+        font-size: 14px;
     }
-    
     .skins-grid {
         grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
         gap: 8px;
     }
-    
     .skin-item {
-        padding: 8px;
+        padding: 5px;
     }
-    
     .skin-item img {
-        height: 50px;
-        margin-bottom: 5px;
+        max-width: 60px;
+        max-height: 60px;
     }
-    
     .skin-name {
-        font-size: 0.75rem;
+        font-size: 12px;
     }
-    
     .skin-price {
-        font-size: 0.75rem;
+        font-size: 11px;
     }
-    
     .inventory-side, .site-side {
-        height: 200px;
+        width: 100%;
         max-height: 200px;
         padding: 10px;
     }
-    
     .upgrade-btn {
-        padding: 8px 15px;
-        font-size: 0.85rem;
-        margin-top: 10px;
+        padding: 8px 16px;
+        font-size: 14px;
     }
-    
     .inventory-side h3, .site-side h3 {
-        font-size: 1.2rem;
+        font-size: 16px;
         margin-bottom: 10px;
-        padding-bottom: 5px;
     }
-    
-    .pagination {
-        margin-top: 10px;
-    }
-    
-    .page-btn {
-        padding: 5px 10px;
-        font-size: 0.8rem;
-    }
-    
     .upgrade-modal .modal-content {
+        width: 95%;
+        margin: 5% auto;
         padding: 10px;
-        margin: 2% auto;
     }
-    
     .upgrade-container {
-        gap: 10px;
+        flex-direction: column;
+        height: auto;
+        max-height: 80vh;
+    }
+}
+
+@media (max-width: 360px) {
+    .upgrade-circle {
+        width: 180px;
+        height: 180px;
+    }
+    .upgrade-center {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+    }
+    .chance-value {
+        font-size: 18px;
+    }
+    .chance-label {
+        font-size: 12px;
+    }
+    .skins-grid {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 6px;
+    }
+    .skin-item {
+        padding: 4px;
+    }
+    .skin-item img {
+        max-width: 50px;
+        max-height: 50px;
+    }
+    .upgrade-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    .upgrade-modal .modal-content {
+        padding: 8px;
+    }
+    .upgrade-progress {
+        height: 8px;
+    }
+    .upgrade-title {
+        font-size: 18px;
+    }
+    .skin-name, .skin-price {
+        font-size: 10px;
     }
 }
 
@@ -1581,8 +1594,6 @@ header {
     .upgrade-center {
         width: 120px;
         height: 120px;
-        top: 20px;
-        left: 20px;
     }
     
     .chance-value {
