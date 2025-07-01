@@ -1176,7 +1176,6 @@ header {
 /* Дополнительные стили для мобильных устройств */
 @media (max-width: 480px) {
     .upgrade-circle {
-<<<<<<< HEAD
         width: 200px;
         height: 200px;
         margin-bottom: 15px;
@@ -1185,21 +1184,11 @@ header {
     .upgrade-center {
         width: 150px;
         height: 150px;
-=======
-        width: 220px;
-        height: 220px;
-    }
-    
-    .upgrade-center {
-        width: 170px;
-        height: 170px;
->>>>>>> 48cae86b822a2caed36ce26ba17044ef3053ebc9
         top: 25px;
         left: 25px;
     }
     
     .chance-value {
-<<<<<<< HEAD
         font-size: 2rem;
     }
     
@@ -1263,40 +1252,6 @@ header {
     
     .upgrade-container {
         gap: 10px;
-=======
-        font-size: 2.2rem;
-    }
-    
-    .skins-grid {
-        grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
-        gap: 10px;
-    }
-    
-    .skin-item {
-        padding: 10px;
-    }
-    
-    .skin-item img {
-        height: 60px;
-    }
-    
-    .skin-name {
-        font-size: 0.8rem;
-    }
-    
-    .skin-price {
-        font-size: 0.8rem;
-    }
-    
-    .inventory-side, .site-side {
-        height: 250px;
-        max-height: 250px;
-    }
-    
-    .upgrade-btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
->>>>>>> 48cae86b822a2caed36ce26ba17044ef3053ebc9
     }
 }
 
@@ -1614,7 +1569,6 @@ header {
     background: #777;
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-<<<<<<< HEAD
 }
 
 /* Сверхкомпактная версия для очень маленьких экранов */
@@ -1675,6 +1629,4 @@ header {
     .skin-name, .skin-price {
         font-size: 0.7rem;
     }
-=======
->>>>>>> 48cae86b822a2caed36ce26ba17044ef3053ebc9
 }
