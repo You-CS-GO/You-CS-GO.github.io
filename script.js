@@ -456,7 +456,7 @@ function showUpgradeResult() {
         `<div class="profit-info">Прибыль: <span class="profit-value">+${selectedSiteSkin.price - selectedInventoryItem.price} ₽</span></div>` : '';
     
     resultDiv.innerHTML = `
-        <h3 class="${rarityClass}-text">${upgradeResult ? 'УСПЕХ!' : 'НЕУДАЧА'}</h3>
+        <h3 class="${rarityClass}-text">${upgradeResult ? 'УСПЕХ!' : 'НЕ БЕДА'}</h3>
         ${upgradeResult ? 
             `<img src="${escapeHTML(selectedSiteSkin.image)}" alt="${escapeHTML(selectedSiteSkin.name)}" class="result-image ${rarityClass}">
              <p>Вы получили: ${escapeHTML(selectedSiteSkin.name)}</p>
@@ -569,13 +569,59 @@ function openCase(caseItem) {
         return;
     }
 
-    // Списываем деньги сразу
-    currentUser.balance -= caseItem.price;
-    updateUserInDatabase(currentUser);
-    updateBalance();
-
+    // Сохраняем выбранный кейс
     selectedCase = caseItem;
     
+    // Показываем модальное окно подтверждения
+    const confirmModal = document.createElement('div');
+    confirmModal.className = 'modal';
+    confirmModal.id = 'confirmCaseModal';
+    confirmModal.style.display = 'block';
+    confirmModal.innerHTML = `
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Открыть кейс</h2>
+            <p>Вы собираетесь открыть кейс "${escapeHTML(caseItem.name)}" за ${caseItem.price} ₽</p>
+            <p>Ваш баланс: ${currentUser.balance} ₽</p>
+            <p>После открытия останется: ${currentUser.balance - caseItem.price} ₽</p>
+            <div class="confirm-buttons">
+                <button id="confirmOpenBtn" class="open-case-btn">Открыть кейс</button>
+                <button id="cancelOpenBtn" class="cancel-btn">Отмена</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(confirmModal);
+    
+    // Функция для закрытия модального окна подтверждения
+    const closeConfirmModal = () => {
+        document.body.removeChild(confirmModal);
+    };
+    
+    // Добавляем обработчики для кнопок
+    document.getElementById('confirmOpenBtn').addEventListener('click', () => {
+        // Списываем деньги ТОЛЬКО после подтверждения
+        currentUser.balance -= caseItem.price;
+        updateUserInDatabase(currentUser);
+        updateBalance();
+        closeConfirmModal();
+        
+        // Продолжаем процесс открытия кейса
+        openConfirmedCase();
+    });
+    
+    document.getElementById('cancelOpenBtn').addEventListener('click', closeConfirmModal);
+    confirmModal.querySelector('.close').addEventListener('click', closeConfirmModal);
+    
+    // Закрытие по клику вне модального окна
+    window.addEventListener('click', function(event) {
+        if (event.target === confirmModal) {
+            closeConfirmModal();
+        }
+    });
+}
+
+// Функция для продолжения процесса открытия кейса после подтверждения
+function openConfirmedCase() {
     // Создаём массив предметов с вероятностями в зависимости от редкости
     const allSkins = getSkinsData();
     const possibleRewards = [];
@@ -1183,6 +1229,11 @@ function claimBonus() {
 
 // Настройка таймера для бонуса
 function setupBonusTimer() {
+    // Очищаем предыдущий таймер, если он был
+    if (bonusTimer) {
+        clearInterval(bonusTimer);
+    }
+    
     // Проверяем, авторизован ли пользователь
     if (currentUser) {
         bonusSection.style.display = 'block';
@@ -1196,8 +1247,21 @@ function setupBonusTimer() {
             bonusTimeLeft = Math.max(0, parseInt(savedTimeLeft) - elapsedSeconds);
         }
         
+        // Обновляем отображение таймера сразу
         updateBonusTimer();
-        bonusTimer = setInterval(updateBonusTimer, 1000);
+        
+        // Запоминаем время последнего обновления
+        let lastUpdateTime = Date.now();
+        
+        // Устанавливаем новый интервал обновления каждую секунду
+        bonusTimer = setInterval(function() {
+            // Проверяем, что мы не обновляем счетчик слишком часто
+            const now = Date.now();
+            if (now - lastUpdateTime >= 1000) {
+                updateBonusTimer();
+                lastUpdateTime = now;
+            }
+        }, 1000);
     } else {
         bonusSection.style.display = 'none';
     }
@@ -1206,14 +1270,25 @@ function setupBonusTimer() {
 // Обновление таймера бонуса
 function updateBonusTimer() {
     if (bonusTimeLeft <= 0) {
+        // Если таймер истек, останавливаем его
+        if (bonusTimer) {
+            clearInterval(bonusTimer);
+            bonusTimer = null;
+        }
+        
         claimBonusBtn.disabled = false;
         bonusTimerElement.textContent = 'Доступен!';
         return;
     }
     
-    bonusTimeLeft--;
-    localStorage.setItem('bonusTimeLeft', bonusTimeLeft);
+    // Уменьшаем значение таймера на 1 секунду
+    bonusTimeLeft -= 1;
     
+    // Сохраняем текущее значение и время обновления
+    localStorage.setItem('bonusTimeLeft', bonusTimeLeft);
+    localStorage.setItem('lastBonusTime', Date.now());
+    
+    // Обновляем отображение
     const minutes = Math.floor(bonusTimeLeft / 60);
     const seconds = bonusTimeLeft % 60;
     bonusTimerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
