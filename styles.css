@@ -1110,7 +1110,7 @@ header {
 
 
 /* Адаптивность */
-@media (max-width: 1200px) {
+@media (max-width: 1200px) and (min-width: 769px) {
     .upgrade-container {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
@@ -1146,6 +1146,80 @@ header {
     
     .chance-value {
         font-size: 2.8rem;
+    }
+    
+    .upgrade-modal .modal-content {
+        width: 95%;
+        max-width: none;
+        padding: 15px;
+        margin: 5% auto;
+    }
+    
+    .upgrade-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 15px;
+    }
+    
+    .upgrade-main {
+        order: -1;
+        margin-bottom: 15px;
+    }
+    
+    .inventory-side, .site-side {
+        height: 300px;
+        max-height: 300px;
+        padding: 15px;
+    }
+}
+
+/* Дополнительные стили для мобильных устройств */
+@media (max-width: 480px) {
+    .upgrade-circle {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .upgrade-center {
+        width: 170px;
+        height: 170px;
+        top: 25px;
+        left: 25px;
+    }
+    
+    .chance-value {
+        font-size: 2.2rem;
+    }
+    
+    .skins-grid {
+        grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+        gap: 10px;
+    }
+    
+    .skin-item {
+        padding: 10px;
+    }
+    
+    .skin-item img {
+        height: 60px;
+    }
+    
+    .skin-name {
+        font-size: 0.8rem;
+    }
+    
+    .skin-price {
+        font-size: 0.8rem;
+    }
+    
+    .inventory-side, .site-side {
+        height: 250px;
+        max-height: 250px;
+    }
+    
+    .upgrade-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
     }
 }
 
@@ -1438,4 +1512,29 @@ header {
     padding: 30px 0;
     color: #7f8c8d;
     font-style: italic;
+}
+
+/* Стили для модального окна подтверждения */
+.confirm-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.cancel-btn {
+    padding: 12px 25px;
+    background: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.cancel-btn:hover {
+    background: #777;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
