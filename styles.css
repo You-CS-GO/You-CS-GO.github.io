@@ -1110,7 +1110,7 @@ header {
 
 
 /* Адаптивность */
-@media (max-width: 1200px) {
+@media (max-width: 1200px) and (min-width: 769px) {
     .upgrade-container {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
@@ -1127,7 +1127,7 @@ header {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) and (min-width: 481px) {
     .upgrade-circle {
         width: 280px;
         height: 280px;
@@ -1146,6 +1146,112 @@ header {
     
     .chance-value {
         font-size: 2.8rem;
+    }
+    
+    .upgrade-modal .modal-content {
+        width: 95%;
+        max-width: none;
+        padding: 15px;
+        margin: 5% auto;
+    }
+    
+    .upgrade-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 15px;
+    }
+    
+    .upgrade-main {
+        order: -1;
+        margin-bottom: 15px;
+    }
+    
+    .inventory-side, .site-side {
+        height: 300px;
+        max-height: 300px;
+        padding: 15px;
+    }
+}
+
+/* Дополнительные стили для мобильных устройств */
+@media (max-width: 480px) {
+    .upgrade-circle {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 15px;
+    }
+    
+    .upgrade-center {
+        width: 150px;
+        height: 150px;
+        top: 25px;
+        left: 25px;
+    }
+    
+    .chance-value {
+        font-size: 2rem;
+    }
+    
+    .chance-label {
+        font-size: 0.9rem;
+    }
+    
+    .skins-grid {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 8px;
+    }
+    
+    .skin-item {
+        padding: 8px;
+    }
+    
+    .skin-item img {
+        height: 50px;
+        margin-bottom: 5px;
+    }
+    
+    .skin-name {
+        font-size: 0.75rem;
+    }
+    
+    .skin-price {
+        font-size: 0.75rem;
+    }
+    
+    .inventory-side, .site-side {
+        height: 200px;
+        max-height: 200px;
+        padding: 10px;
+    }
+    
+    .upgrade-btn {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+        margin-top: 10px;
+    }
+    
+    .inventory-side h3, .site-side h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+    }
+    
+    .pagination {
+        margin-top: 10px;
+    }
+    
+    .page-btn {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .upgrade-modal .modal-content {
+        padding: 10px;
+        margin: 2% auto;
+    }
+    
+    .upgrade-container {
+        gap: 10px;
     }
 }
 
@@ -1438,4 +1544,89 @@ header {
     padding: 30px 0;
     color: #7f8c8d;
     font-style: italic;
+}
+
+/* Стили для модального окна подтверждения */
+.confirm-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.cancel-btn {
+    padding: 12px 25px;
+    background: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.cancel-btn:hover {
+    background: #777;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Сверхкомпактная версия для очень маленьких экранов */
+@media (max-width: 360px) {
+    .upgrade-circle {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .upgrade-center {
+        width: 120px;
+        height: 120px;
+        top: 20px;
+        left: 20px;
+    }
+    
+    .chance-value {
+        font-size: 1.6rem;
+        margin-bottom: 5px;
+    }
+    
+    .chance-label {
+        font-size: 0.7rem;
+    }
+    
+    .skins-grid {
+        grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
+        gap: 5px;
+    }
+    
+    .skin-item {
+        padding: 5px;
+    }
+    
+    .skin-item img {
+        height: 40px;
+        margin-bottom: 3px;
+    }
+    
+    .upgrade-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .upgrade-modal .modal-content {
+        padding: 8px;
+    }
+    
+    .upgrade-progress {
+        clip: rect(0, 160px, 160px, 80px);
+    }
+    
+    .upgrade-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .skin-name, .skin-price {
+        font-size: 0.7rem;
+    }
 }
